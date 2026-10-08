@@ -1,0 +1,25 @@
+{
+  "name": "layocrown-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "layocrownworld.js",
+  "scripts": {
+    "start": "node layocrownworld.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cloudinary": "^2.11.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^18.0.6",
+    "express": "^4.22.3",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^7.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.11.1",
+    "multer": "^1.4.5-lts.1"
+  }
+}

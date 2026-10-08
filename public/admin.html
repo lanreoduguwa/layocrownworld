@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Layocrowns Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="wrap">
+
+<div class="login box" id="login">
+ <h1>Layocrowns Admin</h1>
+ <form id="lf">
+  <label for="u">Username</label><input id="u" autocomplete="username" required>
+  <label for="p">Password</label><input id="p" type="password" autocomplete="current-password" required>
+  <p class="msg e" id="le" role="alert"></p>
+  <button class="btn" style="width:100%">Log in</button>
+ </form>
+</div>
+
+<div id="panel" hidden>
+ <div class="top"><h1>Layocrowns Admin</h1><div class="acts"><a class="btn o s" href="/" style="text-decoration:none">View site</a><button class="btn o s" id="out">Log out</button></div></div>
+ <div class="tabs"><button class="tab on" data-t="prod">Products</button><button class="tab" data-t="vid">Videos</button></div>
+
+ <div id="prod">
+  <form class="box" id="pf">
+   <h2>Post a new product</h2>
+   <label for="pn">Name</label><input id="pn" required maxlength="80">
+   <label for="pc">Category</label>
+   <select id="pc"><option>Perfume</option><option>Perfume Oil</option><option>Body Mist</option><option>Body Spray</option><option>Diffuser</option></select>
+   <label for="pp">Price (₦)</label><input id="pp" type="number" min="0" inputmode="numeric" required>
+   <label for="pd">Short description</label><textarea id="pd" rows="2" maxlength="300"></textarea>
+   <label for="pi">Photo</label><input id="pi" type="file" accept="image/*">
+   <div class="bar" id="pbar"><i></i></div>
+   <p class="msg" id="pm" role="status"></p>
+   <button class="btn" id="pb">Post product</button>
+  </form>
+  <div class="box"><h2>Your products</h2><div id="plist"></div></div>
+ </div>
+
+ <div id="vid" hidden>
+  <form class="box" id="vf">
+   <h2>Post a short video</h2>
+   <label for="vt">Title</label><input id="vt" required maxlength="80" placeholder="New arrival">
+   <label for="vi">Video file (mp4 or mov, up to 60 MB)</label><input id="vi" type="file" accept="video/*" required>
+   <div class="bar" id="vbar"><i></i></div>
+   <p class="msg" id="vm" role="status"></p>
+   <button class="btn" id="vb">Post video</button>
+  </form>
+  <div class="box"><h2>Your videos</h2><div id="vlist"></div></div>
+ </div>
+</div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

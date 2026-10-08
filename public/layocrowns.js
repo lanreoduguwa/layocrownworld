@@ -144,18 +144,11 @@ addEventListener("hashchange", route);
   try { VIDEOS = (await getJSON("/api/videos")).map(v => ({ src: v.url, title: v.title, poster: v.poster })); } catch {}
   Object.keys(cart).forEach(id => { const p = find(id); if (!p || !p.inStock) delete cart[id]; });
   document.title = `${CFG.name} | Perfumes`;
-  $("ownerName").textContent = CFG.ownerName || "Funmilayo Adetulubo";
   $("mono").textContent = CFG.name.charAt(0);
 
-  /* Owner photo: always loaded from public/owner.png */
-  /* Owner photo: always loaded from public/owner.png */
+  /* Owner photo: loaded from public/owner.png and fills the arch frame (the CSS does the fitting) */
   const oi = $("ownerImg");
-  const showPhoto = () => {
-    if (!oi.naturalWidth) return;
-    document.querySelector(".owner .arch").style.aspectRatio = oi.naturalWidth + " / " + oi.naturalHeight;
-    oi.hidden = false;
-    $("mono").hidden = true;
-  };
+  const showPhoto = () => { if (oi.naturalWidth) { oi.hidden = false; $("mono").hidden = true; } };
   oi.onload = showPhoto;
   oi.onerror = () => { oi.hidden = true; $("mono").hidden = false; };
   oi.src = OWNER_PHOTO;

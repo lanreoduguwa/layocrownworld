@@ -1,6 +1,7 @@
 /* Everything below is loaded from your server: products and videos from the admin page,
    bank details, WhatsApp number and owner name from your .env settings. */
-let CFG = { name: "Layocrowns", ownerName: "", ownerPhoto: "owner.jpg", whatsapp: "", bank: { bank: "", accountName: "", accountNumber: "" } };
+const OWNER_PHOTO = "/owner.png";   // file must be at public/owner.png
+let CFG = { name: "Layocrowns", ownerName: "", whatsapp: "", bank: { bank: "", accountName: "", accountNumber: "" } };
 let PRODUCTS = [], VIDEOS = [];
 const getJSON = u => fetch(u).then(r => r.ok ? r.json() : Promise.reject());
 
@@ -143,11 +144,15 @@ addEventListener("hashchange", route);
   try { VIDEOS = (await getJSON("/api/videos")).map(v => ({ src: v.url, title: v.title, poster: v.poster })); } catch {}
   Object.keys(cart).forEach(id => { const p = find(id); if (!p || !p.inStock) delete cart[id]; });
   document.title = `${CFG.name} | Perfumes`;
-  $("ownerName").textContent = CFG.ownerName;
+  $("ownerName").textContent = CFG.ownerName || "Funmilayo Adetulubo";
   $("mono").textContent = CFG.name.charAt(0);
+
+  /* Owner photo: always loaded from public/owner.png */
   const oi = $("ownerImg");
   oi.onload = () => { oi.hidden = false; $("mono").hidden = true; };
-  if (CFG.ownerPhoto) oi.src = CFG.ownerPhoto;
+  oi.onerror = () => { oi.hidden = true; $("mono").hidden = false; };
+  oi.src = OWNER_PHOTO;
+
   ["waHero", "waFoot", "waFloat"].forEach(id => $(id).href = wa(`Hello ${CFG.name}, I would like to ask about your perfumes.`));
   $("strip").innerHTML = Array(8).fill('<span>Perfume</span><span>Body mist</span><span>Body spray</span><span>Perfume oil</span><span>Diffuser</span>').join("");
   $("bank").innerHTML = bankHTML();

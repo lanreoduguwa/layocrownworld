@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const security = require('./middleware/security');
-const routes = require('./routes');
+const routes = require('./routes/layocrown');
 const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();

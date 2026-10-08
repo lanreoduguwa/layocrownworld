@@ -148,10 +148,11 @@ addEventListener("hashchange", route);
   $("mono").textContent = CFG.name.charAt(0);
 
   /* Owner photo: always loaded from public/owner.png */
-  const oi = $("ownerImg");
-  oi.onload = () => { oi.hidden = false; $("mono").hidden = true; };
-  oi.onerror = () => { oi.hidden = true; $("mono").hidden = false; };
-  oi.src = OWNER_PHOTO;
+ oi.onload = () => {
+  document.querySelector(".owner .arch").style.aspectRatio = oi.naturalWidth + " / " + oi.naturalHeight;
+  oi.hidden = false;
+  $("mono").hidden = true;
+};
 
   ["waHero", "waFoot", "waFloat"].forEach(id => $(id).href = wa(`Hello ${CFG.name}, I would like to ask about your perfumes.`));
   $("strip").innerHTML = Array(8).fill('<span>Perfume</span><span>Body mist</span><span>Body spray</span><span>Perfume oil</span><span>Diffuser</span>').join("");
